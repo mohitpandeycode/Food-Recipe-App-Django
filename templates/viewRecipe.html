@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Recipe-{{view.recipe_name}}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+
+        {% load static %}
+        body {
+            background-image: url("{% static 'ground.jpg' %}");
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+        .form-control{
+            background-color: rgba(0, 0, 0, 0.086);
+        }
+        .form-control:focus{
+            background-color: rgba(255, 255, 255, 0.099);
+        }
+        .navbar{
+            border: 2px solid #f8f8f8;
+            background-color: rgba(0, 0, 0, 0.619);
+        }
+        
+
+    </style>
+  </head>
+
+  <body>
+    <nav class="navbar mb-2">
+        <div class="container-fluid ">
+            <a class="navbar-brand text-light fs-2"><b>Foodie Foodie.com</b></a>
+            <form class="d-flex" role="search" method="get">
+                <input class="form-control text-light me-2" name="search" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-info" type="submit"><b>Search</b></button>
+                {% if user.is_authenticated %}
+                <div class="btn-group">
+                    <button class="btn btn-warning dropdown-toggle mx-2" type="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Welcome {{ request.user }}
+                    </button>
+                    <ul class="dropdown-menu mt-3">
+                        <li><a class="dropdown-item" href="/logout/">Logout</a></li>
+                    </ul>
+                </div>
+                {% else %}
+                <a href="/login/" class="btn btn-success mx-2">Login</a>
+                <a href="/signup/" class="btn btn-warning mx-2">Signup</a>
+                {% endif %}
+            </form>
+        </div>
+    </nav>
+    <section class="py-5 ">
+        <div class="container px-4 px-lg-5 my-5">
+            <div class="row gx-4 gx-lg-5 align-items-center">
+                <div class="col-md-6"><img class="card-img-top mb-5 border border-5 border-light mb-md-0" src="/media/{{ view.image }}" alt="..."></div>
+                <div class="col-md-6">
+                    <b><div class="small mb-1">Foodie Foodie - <span class="text-success">Recipes</span></div></b>
+                    <h1 class="display-5 fw-bolder">{{ view.recipe_name }}</h1>
+                    <div class="fs-5 mb-5">
+                        <span class="text-danger">Make your recipe delicious 😋</span>
+                    </div>
+                    <p class="lead fs-4"><b>{{view.Description}}</b></p>
+                    <div class="d-flex">
+                        <a href="/" class="btn btn-outline-dark flex-shrink-0" fdprocessedid="epm2snn">
+                            <i class="bi-cart-fill me-1"></i>
+                            Go to home
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js"></script>
+  </body>
+</html>

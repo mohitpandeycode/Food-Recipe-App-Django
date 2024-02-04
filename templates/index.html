@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Food Recipe</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        img {
+            height: 200px;
+            width: 200px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 10px
+        }
+
+        .modal.show .modal-dialog {
+            transform: none;
+            margin-top: 15%;
+        }
+
+        .mx-5 {
+            margin-left: 4.5rem !important;
+        }
+
+        body {
+            background-image: url('static/bgi.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+        .form-control{
+            background-color: rgba(0, 0, 0, 0.201);
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        .form-control:focus{
+            background-color: rgba(255, 255, 255, 0.099);
+        }
+        .navbar{
+            border: 2px solid #f8f8f8;
+            background-color: rgba(0, 0, 0, 0.619);
+        }
+        .container{
+            box-shadow: 12px 18px 20px #00000096;
+        }
+        .card{
+            width: 18rem;
+            background-color: #000000d1;
+            color: white;
+            border:2px solid #00ffff;
+            box-shadow: 10px 15px 20px #00000096;
+        }
+
+    </style>
+</head>
+
+<body>
+    <nav class="navbar mb-2">
+        <div class="container-fluid ">
+            <a class="navbar-brand text-light fs-2"><b>Foodie Foodie.com</b></a>
+            <form class="d-flex" role="search" method="get">
+                <input class="form-control text-light me-2" name="search" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-info" type="submit"><b>Search</b></button>
+                {% if user.is_authenticated %}
+                <div class="btn-group">
+                    <button class="btn btn-warning dropdown-toggle mx-2" type="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Welcome {{ request.user }}
+                    </button>
+                    <ul class="dropdown-menu mt-3">
+                        <li><a class="dropdown-item" href="/logout/">Logout</a></li>
+                    </ul>
+                </div>
+                {% else %}
+                <a href="/login/" class="btn btn-success mx-2">Login</a>
+                <a href="/signup/" class="btn btn-warning mx-2">Signup</a>
+                {% endif %}
+            </form>
+        </div>
+    </nav>
+
+    {% if user.is_authenticated %}
+    <!-- form for adding recipies data -->
+    <div class="container border col-md-6 mt-5 pb-5">
+        <h2 class="text-light">Food Recipe App - <span class="fs-4 text-dark">Add your own Recipe..</span></h2>
+        <hr>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="foodname" class="form-label text-warning fs-5">Recipe Name</label>
+                <input type="text" class="form-control text-light" required id="foodname" name="recipe_name">
+            </div>
+            <div class="mb-3">
+                <label for="Description" class="form-label text-warning fs-5">Description</label>
+                <textarea id="Description" required name="Description" class="form-control text-light" rows="4"
+                    cols="50"></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="image" class="form-label text-warning fs-5">Upload Food image</label>
+                <input class="form-control form-control-sm text-light" id="image" type="file" name="image">
+            </div>
+            <button type="submit" class="btn btn-success col-md-12 m-auto">Add Recipe+</button>
+        </form>
+    </div>
+    {% endif %}
+
+    <!-- List of recipies from database.... -->
+    {% if not items %}
+
+    <div class="container border mt-5 p-5">
+        <marquee class="fs-4">No data found! Please add some Recipies or Search Diffrent dish...</marquee>
+        {% endif %}
+        {% if items %}
+        <div class="cards container border mt-5 p-5">
+            {% for n in items %}
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="media/{{n.image}}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title text-info fs-4">{{ n.recipe_name }}</h5>
+                    <p class="card-text">{{ n.Description|slice:"0:80" }}....</p>
+                    <hr>
+                {% if user.is_authenticated %}
+                    <a href="/viewrecipe/{{n.id}}" class="btn btn-warning p-2 mx-2">View item</a>
+                    <a href="/update_recipe/{{n.id}}" class="btn btn-success p-2">Update</a>
+                    <a data-bs-toggle="modal" data-bs-target="#confirm-{{ n.id }}" class="btn btn-danger p-2">Delete</a>
+                    {% else %}
+                    <a href="/viewrecipe/{{n.id}}" class="btn btn-warning mx-5">View recipe</a>
+                {% endif %}
+                </div>
+            </div>
+
+            <div class="modal" id="confirm-{{ n.id }}" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Delete Confirmation-{{n.recipe_name}}</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Do you really want to delete?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <a data-bs-dismiss="modal" class="btn btn-success">No</a>
+                            <a href="/recipe/{{n.id}}" class="btn btn-danger">Delete</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% endif %}
+
+        </div>
+    </div>
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js"></script>
+</body>
+
+
+</html>
