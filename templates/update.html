@@ -12,39 +12,60 @@
             max-width: 100px;
             border: 2px solid rgb(148, 148, 148);
         }
+
+            {% load static %}
+
+        body {
+            background-image: url("{% static 'backkk.jpg' %}");
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+        .form-control{
+            background-color: rgba(255, 255, 255, 0.35);
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
     </style>
 </head>
 
 <body>
     <!-- form for update recipies data -->
-    <div class="container border col-md-6 mt-5 pb-5">
-        <h2>Food Recipe Update</h2>
+    <div class="container border border-2 col-md-6 mt-5 pb-5">
+        <h2>Food Recipe Update-{{recipe.recipe_name}}</h2>
         <hr>
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="mb-3">
-                <label for="foodname" class="form-label">Recipe Name</label>
-                <input type="text" class="form-control" value="{{ recipe.recipe_name}}" id="foodname" name="recipe_name" />
+                <b><label for="foodname" class="form-label fs-5 text-danger">Recipe Name</label></b>
+                <input type="text" class="form-control" value="{{ recipe.recipe_name}}" id="foodname"
+                    name="recipe_name" />
             </div>
             <div class="mb-3">
-                <label for="Description" class="form-label">Description</label>
-                <textarea id="Description" name="Description" class="form-control" rows="4"
-                    cols="50">{{ recipe.Description }}</textarea>
+                <b><label for="Description" class="form-label fs-5 text-danger">Description</label></b>
+                        <textarea id="Description" name="Description" class="form-control" rows="4"
+                            cols="50">{{ recipe.Description }}</textarea>
             </div>
             <div class="mb-3 d-flex">
                 <div class="col-md-5">
-                    <label for="image" class="form-label">Upload Food image</label>
+                 <b><label for="image" class="form-label fs-5 text-danger">Upload Food image</label></b>
                     <input class="form-control form-control-sm" id="image" type="file" name="image" />
                 </div>
                 <img class="col-md-6 mx-5" src="/media/{{recipe.image}}"></img>
             </div>
             <button type="submit" class="btn btn-success col-md-12 m-auto">Update</button>
+            <a href="/" class="btn btn-outline-dark mt-2 flex-shrink-0" fdprocessedid="epm2snn">
+                <i class="bi-cart-fill me-1"></i>
+                Go to home
+            </a>
         </form>
     </div>
     {% if Done %}
-    <div class="container">
-        <h3>Recipe Updated Successfully....!</h3><a href="/">Go back</a>
-    </div>
+    <div class="container text-danger">
+        <h3>Recipe Updated Successfully....!</h3>   
+        <a href="/" class="btn btn-outline-dark flex-shrink-0" fdprocessedid="epm2snn">
+            <i class="bi-cart-fill me-1"></i>
+            Go to home
+        </a>
     {% endif %}
 </body>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"

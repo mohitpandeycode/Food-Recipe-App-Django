@@ -56,6 +56,12 @@
             border:2px solid #00ffff;
             box-shadow: 10px 15px 20px #00000096;
         }
+        .modal-content{
+            background-color: #0000007d;
+            border: 2px solid white;
+            color:red;
+            font-weight: 700;
+        }
 
     </style>
 </head>
@@ -139,10 +145,10 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title">Delete Confirmation-{{n.recipe_name}}</h5>
+                            <h5 class="modal-title">Delete Confirmation-{{n.recipe_name}}!</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div class="modal-body">
+                        <div class="modal-body text-light">
                             <p>Do you really want to delete?</p>
                         </div>
                         <div class="modal-footer">
