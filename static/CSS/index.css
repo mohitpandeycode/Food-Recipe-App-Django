@@ -1,0 +1,110 @@
+img {
+    height: 200px;
+    width: 200px;
+}
+
+.cards {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.modal.show .modal-dialog {
+    transform: none;
+    margin-top: 15%;
+}
+
+.mx-5 {
+    margin-left: 4.5rem !important;
+}
+
+body {
+    background-image: url('/static/images/bgi.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    .form-control {
+        background-color: rgba(0, 0, 0, 0.201);
+        font-size: 1.2rem;
+        font-weight: bold;
+    }
+
+    .form-control:focus {
+        background-color: rgba(255, 255, 255, 0.099);
+    }
+
+    .navbar {
+        border: 2px solid #f8f8f8;
+        background-color: rgba(0, 0, 0, 0.619);
+    }
+
+    .container {
+        box-shadow: 12px 18px 20px #00000096;
+    }
+
+    .card {
+        width: 18rem;
+        background-color: #000000d1;
+        color: white;
+        border: 2px solid #00ffff;
+        box-shadow: 10px 15px 20px #00000096;
+    }
+
+    .modal-content {
+        background-color: #0000007d;
+        border: 2px solid white;
+        color: red;
+        font-weight: 700;
+    }
+
+    @media (max-width: 500px) {
+        .card {
+            width: 15rem;
+            height: 20rem;
+        }
+
+        .card-img-top {
+            height: 140px;
+        }
+
+        .card-title {
+            margin: 0;
+        }
+
+        .card-body {
+            flex: 1 1 auto;
+            padding: 5px;
+        }
+
+        .btn {
+            padding: 5px;
+        }
+
+        hr {
+            margin: 10px;
+        }
+
+        .form {
+            height: 30px;
+        }
+
+        .navbtn {
+            display: flex;
+            align-items: center;
+        }
+
+        .card>.p-5,
+        .mt-5 {
+            padding: 1rem !important;
+            margin-top: 1rem !important;
+        }
+
+        .form-control {
+            font-size: 0.8rem;
+            font-weight: 100;
+        }
+    }
+}

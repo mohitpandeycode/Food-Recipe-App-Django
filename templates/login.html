@@ -10,9 +10,11 @@
       <style>
         {% load static %}
         body{
-          background-image: url("{% static 'back.jpg' %}");
+          background-image: url("{% static 'images/back.jpg' %}");
           background-size: cover;
           background-repeat: no-repeat;
+          {% comment %} background-position: center; {% endcomment %}
+
         }
         .form-control{
           background-color: rgba(255, 255, 255, 0.216);
