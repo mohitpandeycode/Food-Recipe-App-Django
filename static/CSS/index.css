@@ -59,7 +59,6 @@ body {
         color: red;
         font-weight: 700;
     }
-
     @media (max-width: 500px) {
         .card {
             width: 15rem;
@@ -80,7 +79,7 @@ body {
         }
 
         .btn {
-            padding: 5px;
+            padding: 1px;
         }
 
         hr {

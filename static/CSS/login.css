@@ -1,0 +1,12 @@
+body {
+    background-image: url('/static/images/back.jpg');
+    background-size: cover;
+}
+
+.form-control {
+    background-color: rgba(255, 255, 255, 0.216);
+}
+
+.container {
+    box-shadow: 12px 18px 20px #00000096;
+}

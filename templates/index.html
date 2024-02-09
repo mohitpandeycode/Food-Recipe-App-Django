@@ -78,9 +78,9 @@
                     <p class="card-text">{{ n.Description|slice:"0:80" }}....</p>
                     <hr>
                     {% if user.is_authenticated %}
-                    <a href="/viewrecipe/{{n.id}}" class="btn btn-warning p-2 mx-2">View item</a>
-                    <a href="/update_recipe/{{n.id}}" class="btn btn-success p-2">Update</a>
-                    <a data-bs-toggle="modal" data-bs-target="#confirm-{{ n.id }}" class="btn btn-danger p-2">Delete</a>
+                    <a href="/viewrecipe/{{n.id}}" class="btn btn-warning p-2 mx-1">View item</a>
+                    <a href="/update_recipe/{{n.id}}" class="btn btn-success p-1">Update</a>
+                    <a data-bs-toggle="modal" data-bs-target="#confirm-{{ n.id }}" class="btn btn-danger p-1">Delete</a>
                     {% else %}
                     <a href="/viewrecipe/{{n.id}}" class="btn btn-warning mx-5">View recipe</a>
                     {% endif %}

@@ -1,0 +1,33 @@
+
+body {
+    background-image: url('/static/images/ground.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.form-control{
+    background-color: rgba(0, 0, 0, 0.086);
+}
+.form-control:focus{
+    background-color: rgba(255, 255, 255, 0.099);
+}
+.navbar{
+    border: 2px solid #f8f8f8;
+    background-color: rgba(0, 0, 0, 0.619);
+}
+@media (max-width: 500px) {
+    .btn {
+        padding: 1px;
+    }
+    .form {
+        height: 30px;
+    }
+
+    .navbtn {
+        display: flex;
+        align-items: center;
+    }
+    .form-control {
+        font-size: 0.8rem;
+        font-weight: 100;
+    }
+}
