@@ -43,8 +43,10 @@ body {
 
     .container {
         box-shadow: 12px 18px 20px #00000096;
+        backdrop-filter: blur(0.7px);
     }
 
+    
     .card {
         width: 18rem;
         background-color: #000000d1;
