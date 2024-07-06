@@ -72,7 +72,7 @@
         <div class="cards container border mt-5 p-5">
             {% for n in items %}
             <div class="card">
-                <img class="card-img-top" src="media/{{n.image}}" alt="Card image cap">
+                <img class="card-img-top" src="{{n.image.url}}" alt="Card image cap">
                 <div class="card-body">
                     <h5 class="card-title text-info fs-4">{{ n.recipe_name }}</h5>
                     <p class="card-text">{{ n.Description|slice:"0:80" }}....</p>

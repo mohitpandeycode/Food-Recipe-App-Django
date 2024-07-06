@@ -1,0 +1,21 @@
+img {
+    max-width: 100px;
+    border: 2px solid rgb(148, 148, 148);
+}
+
+body {
+    background-image: url('/static/images/backkk.jpg');
+    background-size: cover;
+    background-position: center;
+}
+.form-control{
+    background-color: rgba(255, 255, 255, 0.35);
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+.container{
+    box-shadow: 12px 18px 20px #00000096;
+}
+h2{
+    background-color: rgb(255, 255, 255, 0.62);
+}
